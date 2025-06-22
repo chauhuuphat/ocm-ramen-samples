@@ -7,6 +7,11 @@ metadata:
   name: busybox
 spec:
   replicas: 1
+  securityContext:
+    seLinuxOptions:
+      type: spc_t
+    runAsGroup: 0
+    fsGroupChangePolicy: OnRootMismatch
   selector:
     matchLabels:
       appname: busybox
