@@ -7,12 +7,6 @@ metadata:
   name: busybox
 spec:
   replicas: 1
-  serviceAccount: db-app-sa
-  securityContext:
-    seLinuxOptions:
-      type: spc_t
-    runAsGroup: 0
-    fsGroupChangePolicy: OnRootMismatch
   selector:
     matchLabels:
       appname: busybox
@@ -21,6 +15,12 @@ spec:
       labels:
         appname: busybox
     spec:
+      serviceAccount: db-app-sa
+      securityContext:
+        seLinuxOptions:
+          type: spc_t
+        runAsGroup: 0
+        fsGroupChangePolicy: OnRootMismatch
       containers:
       - image: docker.io/library/busybox:stable
         imagePullPolicy: IfNotPresent
